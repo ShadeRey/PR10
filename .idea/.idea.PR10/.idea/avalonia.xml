@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="PR10/App.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/CityView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/GoodsView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/MainWindow.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/ManufacturerView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/OrderGoodView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/OrderStatusView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/OrderView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/PickUpPointView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/ProductCategoryView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/PurveyorView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/RolesView.axaml" value="PR10/PR10.csproj" />
+        <entry key="PR10/Views/UnitView.axaml" value="PR10/PR10.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
