@@ -11,17 +11,38 @@
         Title="PR10">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
     <dialogHostAvalonia:DialogHost IsOpen="True">
         <dialogHostAvalonia:DialogHost.DialogContent>
-            <StackPanel Height="150"
-                        Width="200">
-                <TextBlock Text="Вход" HorizontalAlignment="Center"/>
-                <TextBlock Text="Логин"/>
-                <TextBox/>
-                <TextBlock Text="Пароль"/>
-                <TextBox/>
+            <StackPanel>
+                <Panel Background="#FFEBE9"
+                       Height="50"
+                       Width="200"
+                       IsVisible="{Binding InvalidVisible}">
+                    <TextBlock x:Name="Invalid"
+                               Text="Неверный логин или пароль"
+                               VerticalAlignment="Center" />
+                </Panel>
+                <StackPanel Height="200"
+                            Width="200"
+                            Spacing="10"
+                            Background="#F6F8FA">
+                    <TextBlock Text="Вход"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Text="Логин" />
+                    <TextBox x:Name="LoginTextBox"
+                             Text="{Binding Login}" />
+                    <TextBlock Text="Пароль" />
+                    <TextBox x:Name="PasswordTextBox"
+                             Text="{Binding Password}" />
+                    <Button Content="Войти"
+                            Command="{Binding LoginButton}"
+                            Background="#1F883D"
+                            Foreground="#EDF6F0"
+                            Width="200"
+                            HorizontalContentAlignment="Center" />
+                </StackPanel>
             </StackPanel>
         </dialogHostAvalonia:DialogHost.DialogContent>
     </dialogHostAvalonia:DialogHost>
