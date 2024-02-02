@@ -10,5 +10,6 @@ public partial class MainWindow : Window
     {
         ViewModel = new MainWindowViewModel();
         InitializeComponent();
+        CaptchaControl.Generate();
     }
 }

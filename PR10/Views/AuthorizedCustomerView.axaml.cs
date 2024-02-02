@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace PR10.Views;
 
-public partial class AuthorizedСustomerView : Window
+public partial class AuthorizedCustomerView : UserControl
 {
-    public AuthorizedСustomerView()
+    public AuthorizedCustomerView()
     {
         InitializeComponent();
     }

@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+        xmlns:views="clr-namespace:PR10.Views"
+        xmlns:avalonia="clr-namespace:Captcha.Avalonia;assembly=Captcha.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="PR10.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
@@ -13,7 +15,7 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
-    <dialogHostAvalonia:DialogHost IsOpen="True">
+    <dialogHostAvalonia:DialogHost IsOpen="{Binding LoginDialogOpen}">
         <dialogHostAvalonia:DialogHost.DialogContent>
             <StackPanel>
                 <Panel Background="#FFEBE9"
@@ -24,7 +26,7 @@
                                Text="Неверный логин или пароль"
                                VerticalAlignment="Center" />
                 </Panel>
-                <StackPanel Height="200"
+                <StackPanel Height="{Binding LoginDialogHeight}"
                             Width="200"
                             Spacing="10"
                             Background="#F6F8FA">
@@ -36,6 +38,17 @@
                     <TextBlock Text="Пароль" />
                     <TextBox x:Name="PasswordTextBox"
                              Text="{Binding Password}" />
+                    <StackPanel IsVisible="{Binding CaptchaVisible}"
+                                Spacing="20">
+                        <avalonia:CaptchaAvalonia Width="200"
+                                                  Height="50"
+                                                  Name="CaptchaControl"
+                                                  CaptchaText="{Binding CaptchaText}"/>
+                        <TextBox x:Name="CaptchaTextBox"
+                                 Watermark="Введите капчу"
+                                 Text="{Binding CaptchaTextBoxText}"/>
+                    </StackPanel>
+
                     <Button Content="Войти"
                             Command="{Binding LoginButton}"
                             Background="#1F883D"
@@ -45,5 +58,9 @@
                 </StackPanel>
             </StackPanel>
         </dialogHostAvalonia:DialogHost.DialogContent>
+        <Panel>
+            <views:AdministratorView IsVisible="{Binding AdministratorViewVisible}" />
+            <views:AuthorizedCustomerView IsVisible="{Binding AuthorizedCustomerViewVisible}" />
+        </Panel>
     </dialogHostAvalonia:DialogHost>
 </Window>

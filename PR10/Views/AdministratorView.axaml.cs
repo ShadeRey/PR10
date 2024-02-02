@@ -4,7 +4,7 @@ using Avalonia.Markup.Xaml;
 
 namespace PR10.Views;
 
-public partial class AdministratorView : Window
+public partial class AdministratorView : UserControl
 {
     public AdministratorView()
     {

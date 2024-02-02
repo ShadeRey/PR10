@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:PR10.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="PR10.Views.AdministratorView"
-             x:DataType="viewModels:AdministratorViewModel">
-    <TextBlock Text="Administrator"/>
+             x:Class="PR10.Views.AuthorizedCustomerView"
+             x:DataType="viewModels:AuthorizedCustomerViewModel">
+    <TextBlock Text="AuthorizedCustomer" />
 </UserControl>
