@@ -1,6 +1,7 @@
-﻿using MySqlConnector;
+﻿using System;
+using Captcha.Avalonia;
+using MySqlConnector;
 using PR10.DataBase;
-using PR10.Views;
 using ReactiveUI;
 
 namespace PR10.ViewModels;
@@ -15,8 +16,8 @@ public class MainWindowViewModel : ViewModelBase
     private bool _loginDialogOpen = true;
     private bool _captchaVisible;
     private int _loginDialogHeight = 200;
-    private string _captchaText;
-    private string _captchaTextBoxText;
+    private string? _captchaText = null;
+    private string _captchaTextBoxText = String.Empty;
 
     public string Login
     {
@@ -57,7 +58,12 @@ public class MainWindowViewModel : ViewModelBase
     public bool CaptchaVisible
     {
         get => _captchaVisible;
-        set => this.RaiseAndSetIfChanged(ref _captchaVisible, value);
+        set
+        {
+            this.RaisePropertyChanging();
+            _captchaVisible = value;
+            this.RaisePropertyChanged();
+        }
     }
 
     public int LoginDialogHeight
@@ -66,7 +72,7 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _loginDialogHeight, value);
     }
 
-    public string CaptchaText
+    public string? CaptchaText
     {
         get => _captchaText;
         set => this.RaiseAndSetIfChanged(ref _captchaText, value);
@@ -111,36 +117,36 @@ public class MainWindowViewModel : ViewModelBase
         string password = Password;
         string role = ValidateUser(login, password);
         
-        if (CaptchaTextBoxText == CaptchaText)
-        {
-            
-        }
-        else
-        {
-            
-        }
-
         if (role != null)
         {
-            switch (role)
+            if (!CaptchaVisible || CaptchaTextBoxText == CaptchaText)
             {
-                case "1":
-                    AdministratorViewVisible = true;
-                    LoginDialogOpen = false;
-                    break;
-                case "2":
-                    AuthorizedCustomerViewVisible = true;
-                    LoginDialogOpen = false;
-                    break;
-                case "3":
-                    AuthorizedCustomerViewVisible = true;
-                    LoginDialogOpen = false;
-                    break;
+                switch (role)
+                {
+                    case "1":
+                        AdministratorViewVisible = true;
+                        LoginDialogOpen = false;
+                        break;
+                    case "2":
+                        AuthorizedCustomerViewVisible = true;
+                        LoginDialogOpen = false;
+                        break;
+                    case "3":
+                        AuthorizedCustomerViewVisible = true;
+                        LoginDialogOpen = false;
+                        break;
+                }
+            }
+            else
+            {
+                CaptchaVisible = false;
+                CaptchaVisible = true;
             }
         }
         else
         {
             InvalidVisible = true;
+            CaptchaVisible = false;
             CaptchaVisible = true;
             LoginDialogHeight = 350;
         }
