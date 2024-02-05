@@ -1,10 +1,22 @@
-<UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModels="clr-namespace:PR10.ViewModels"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="PR10.Views.AuthorizedCustomerView"
-             x:DataType="viewModels:AuthorizedCustomerViewModel">
-    <TextBlock Text="AuthorizedCustomer" />
-</UserControl>
+<reactiveUi:ReactiveUserControl x:TypeArguments="viewModels:AuthorizedCustomerViewModel" xmlns="https://github.com/avaloniaui"
+                                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                xmlns:viewModels="clr-namespace:PR10.ViewModels"
+                                xmlns:views="clr-namespace:PR10.Views"
+                                xmlns:models="clr-namespace:PR10.Models"
+                                xmlns:reactiveUi="http://reactiveui.net"
+                                mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                                x:Class="PR10.Views.AuthorizedCustomerView"
+                                x:DataType="viewModels:AuthorizedCustomerViewModel">
+    <Design.DataContext>
+        <viewModels:AuthorizedCustomerViewModel />
+    </Design.DataContext>
+    <ListBox ItemsSource="{Binding GoodsList}">
+        <ListBox.ItemTemplate>
+            <DataTemplate DataType="models:Goods">
+                <views:GoodsView DataContext="{Binding .}" />
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
+</reactiveUi:ReactiveUserControl>

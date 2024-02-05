@@ -12,7 +12,7 @@ public class MainWindowViewModel : ViewModelBase
     private string _password;
     private bool _invalidVisible;
     private bool _administratorViewVisible;
-    private bool _authorizedCustomerViewVisible;
+    private bool _authorizedCustomerViewVisible = false;
     private bool _loginDialogOpen = true;
     private bool _captchaVisible;
     private int _loginDialogHeight = 200;

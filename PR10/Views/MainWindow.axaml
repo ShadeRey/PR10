@@ -1,17 +1,19 @@
-<reactiveUi:ReactiveWindow x:TypeArguments="vm:MainWindowViewModel" xmlns="https://github.com/avaloniaui"
-                           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                           xmlns:vm="using:PR10.ViewModels"
-                           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                           xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
-                           xmlns:views="clr-namespace:PR10.Views"
-                           xmlns:avalonia="clr-namespace:Captcha.Avalonia;assembly=Captcha.Avalonia"
-                           xmlns:reactiveUi="http://reactiveui.net"
-                           mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-                           x:Class="PR10.Views.MainWindow"
-                           x:DataType="vm:MainWindowViewModel"
-                           Icon="/Assets/avalonia-logo.ico"
-                           Title="PR10">
+<rxui:ReactiveWindow x:TypeArguments="vm:MainWindowViewModel" xmlns="https://github.com/avaloniaui"
+                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     xmlns:vm="using:PR10.ViewModels"
+                     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     xmlns:dialogHostAvalonia="clr-namespace:DialogHostAvalonia;assembly=DialogHost.Avalonia"
+                     xmlns:views="clr-namespace:PR10.Views"
+                     xmlns:avalonia="clr-namespace:Captcha.Avalonia;assembly=Captcha.Avalonia"
+                     xmlns:rxui="http://reactiveui.net"
+                     xmlns:compiledBindings="clr-namespace:Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;assembly=Avalonia.Markup.Xaml"
+                     mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+                     x:Class="PR10.Views.MainWindow"
+                     x:DataType="vm:MainWindowViewModel"
+                     x:Name="MainW"
+                     Icon="/Assets/avalonia-logo.ico"
+                     Title="PR10">
 
     <Design.DataContext>
         <vm:MainWindowViewModel />
@@ -58,9 +60,11 @@
                 </StackPanel>
             </StackPanel>
         </dialogHostAvalonia:DialogHost.DialogContent>
-        <Panel>
+        <Grid>
             <views:AdministratorView IsVisible="{Binding AdministratorViewVisible}" />
-            <views:AuthorizedCustomerView IsVisible="{Binding AuthorizedCustomerViewVisible}" />
-        </Panel>
+            <views:AuthorizedCustomerView Name="AuthorizedCustomerView"
+                                          IsVisible="{ReflectionBinding #MainW.ViewModel.AuthorizedCustomerViewVisible}">
+            </views:AuthorizedCustomerView>
+        </Grid>
     </dialogHostAvalonia:DialogHost>
-</reactiveUi:ReactiveWindow>
+</rxui:ReactiveWindow>

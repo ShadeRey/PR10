@@ -1,7 +1,9 @@
 using System;
 using System.Reactive.Linq;
+using Avalonia.Controls.Primitives;
 using Avalonia.Interactivity;
 using Avalonia.ReactiveUI;
+using Avalonia.VisualTree;
 using PR10.ViewModels;
 using ReactiveUI;
 
