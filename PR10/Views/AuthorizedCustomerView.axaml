@@ -1,4 +1,5 @@
-<reactiveUi:ReactiveUserControl x:TypeArguments="viewModels:AuthorizedCustomerViewModel" xmlns="https://github.com/avaloniaui"
+<reactiveUi:ReactiveUserControl x:TypeArguments="viewModels:AuthorizedCustomerViewModel"
+                                xmlns="https://github.com/avaloniaui"
                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -6,17 +7,26 @@
                                 xmlns:views="clr-namespace:PR10.Views"
                                 xmlns:models="clr-namespace:PR10.Models"
                                 xmlns:reactiveUi="http://reactiveui.net"
+                                xmlns:theme="clr-namespace:SukiUI.Theme;assembly=SukiUI"
                                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                                 x:Class="PR10.Views.AuthorizedCustomerView"
                                 x:DataType="viewModels:AuthorizedCustomerViewModel">
     <Design.DataContext>
         <viewModels:AuthorizedCustomerViewModel />
     </Design.DataContext>
-    <ListBox ItemsSource="{Binding GoodsList}">
-        <ListBox.ItemTemplate>
-            <DataTemplate DataType="models:Goods">
-                <views:GoodsView DataContext="{Binding .}" />
-            </DataTemplate>
-        </ListBox.ItemTemplate>
-    </ListBox>
+    <StackPanel>
+        <TextBox theme:TextBoxExtensions.Prefix="🔍"
+                 theme:TextBoxExtensions.AddDeleteButton="True"
+                 Width="200"
+                 HorizontalAlignment="Left" />
+        <ListBox ItemsSource="{Binding GoodsList}"
+                 AutoScrollToSelectedItem="True"
+                 Height="1000">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="models:Goods">
+                    <views:GoodsView DataContext="{Binding .}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </StackPanel>
 </reactiveUi:ReactiveUserControl>

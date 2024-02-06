@@ -19,6 +19,7 @@ public class Goods
     public int QuantityInStock { get; set; }
     public string Description { get; set; } = string.Empty;
     public string Image { get; set; } = string.Empty;
+    public string Manufacturer_name { get; set; } = string.Empty;
 
     public Uri ImageUrl => new Uri($"avares://PR10/Assets/GoodsPhoto/{Image}");
 

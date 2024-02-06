@@ -29,7 +29,7 @@ public class GoodsViewModel: ViewModelBase
         {
             connection.Open();
 
-            string query = "SELECT * FROM Goods";
+            string query = "SELECT * FROM Goods JOIN pro1_23.Manufacturer M on M.Id = Goods.Manufacturer";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -42,7 +42,7 @@ public class GoodsViewModel: ViewModelBase
                     Unit = reader.GetInt32("Unit"),
                     Price = reader.GetDouble("Price"),
                     MaximumPossibleDiscountSize = reader.GetDouble("Maximum_possible_discount_size"),
-                    Manufacturer = reader.GetInt32("Manufacturer"),
+                    Manufacturer_name = reader.GetString("Manufacturer_name"),
                     Purveyor = reader.GetInt32("Purveyor"),
                     ProductCategory = reader.GetInt32("Product_category"),
                     CurrentDiscount = reader.GetDouble("Current_discount"),

@@ -14,5 +14,6 @@
         <FluentTheme />
         <dialogHostAvalonia:DialogHostStyles />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+        <StyleInclude Source="avares://SukiUI/Theme/Index.xaml" />
     </Application.Styles>
 </Application>

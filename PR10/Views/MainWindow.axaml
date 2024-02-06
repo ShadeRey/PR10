@@ -7,14 +7,12 @@
                      xmlns:views="clr-namespace:PR10.Views"
                      xmlns:avalonia="clr-namespace:Captcha.Avalonia;assembly=Captcha.Avalonia"
                      xmlns:rxui="http://reactiveui.net"
-                     xmlns:compiledBindings="clr-namespace:Avalonia.Markup.Xaml.MarkupExtensions.CompiledBindings;assembly=Avalonia.Markup.Xaml"
                      mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                      x:Class="PR10.Views.MainWindow"
                      x:DataType="vm:MainWindowViewModel"
                      x:Name="MainW"
                      Icon="/Assets/avalonia-logo.ico"
                      Title="PR10">
-
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
@@ -53,6 +51,7 @@
 
                     <Button Content="Войти"
                             Command="{Binding LoginButton}"
+                            HorizontalAlignment="Center"
                             Background="#1F883D"
                             Foreground="#EDF6F0"
                             Width="200"

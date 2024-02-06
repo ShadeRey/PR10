@@ -15,7 +15,7 @@ public class MainWindowViewModel : ViewModelBase
     private bool _authorizedCustomerViewVisible = false;
     private bool _loginDialogOpen = true;
     private bool _captchaVisible;
-    private int _loginDialogHeight = 200;
+    private int _loginDialogHeight = 250;
     private string? _captchaText = null;
     private string _captchaTextBoxText = String.Empty;
 
@@ -148,7 +148,7 @@ public class MainWindowViewModel : ViewModelBase
             InvalidVisible = true;
             CaptchaVisible = false;
             CaptchaVisible = true;
-            LoginDialogHeight = 350;
+            LoginDialogHeight = 380;
         }
     }
 }

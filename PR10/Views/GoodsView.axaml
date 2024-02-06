@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:PR10.Models"
+             xmlns:theme="clr-namespace:SukiUI.Theme;assembly=SukiUI"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PR10.Views.GoodsView"
              x:DataType="models:Goods">
@@ -16,16 +17,18 @@
               Height="150">
             <Border
                 Grid.Column="0"
+                Width="150"
                 BorderThickness="2"
                 BorderBrush="Gray"
                 Margin="20 0 20 0">
                 <Image VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Margin="0, 0, 0, 0"
-                       Source="{Binding Bitmap}"/>
+                       Source="{Binding Bitmap}" />
             </Border>
             <Border Grid.Column="1"
                     BorderBrush="Gray"
+                    Width="1520"
                     BorderThickness="2"
                     Margin="0 0 30 0">
                 <Grid Margin="50 0 20 0"
@@ -43,6 +46,7 @@
                                VerticalAlignment="Top"
                                HorizontalAlignment="Left"
                                FontSize="20"
+                               TextWrapping="Wrap"
                                Text="{Binding Description}">
                     </TextBlock>
                     <TextBlock Grid.Row="2"
@@ -51,7 +55,7 @@
                                VerticalAlignment="Top"
                                HorizontalAlignment="Left"
                                FontSize="20"
-                               Text="{Binding Manufacturer}">
+                               Text="{Binding Manufacturer_name}">
                     </TextBlock>
                     <TextBlock Grid.Row="3"
                                Margin="0 0 0 0"
@@ -59,17 +63,17 @@
                                VerticalAlignment="Top"
                                HorizontalAlignment="Left"
                                FontSize="20"
-                               Text="{Binding Price}">
+                               Text="{Binding Price, StringFormat={} {0} руб.}">
                     </TextBlock>
                 </Grid>
             </Border>
             <Border Grid.Column="2"
                     BorderBrush="Gray"
+                    Width="100"
                     BorderThickness="2">
                 <Grid Margin="0 0 0 0 ">
                     <TextBlock Grid.Row="0"
                                VerticalAlignment="Center"
-                               Margin="20 0 55 0"
                                HorizontalAlignment="Center"
                                Foreground="Black"
                                FontSize="18"
