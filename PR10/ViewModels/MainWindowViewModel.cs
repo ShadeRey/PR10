@@ -8,6 +8,10 @@ namespace PR10.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
+    public AuthorizedCustomerViewModel AuthorizedCustomerViewModel { get; set; } = new();
+    public AdministratorViewModel AdministratorViewModel { get; set; } = new();
+    public GoodsViewModel GoodsViewModel { get; set; } = new();
+    
     private string _login;
     private string _password;
     private bool _invalidVisible;

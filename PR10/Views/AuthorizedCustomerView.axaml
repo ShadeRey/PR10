@@ -15,11 +15,35 @@
         <viewModels:AuthorizedCustomerViewModel />
     </Design.DataContext>
     <StackPanel>
-        <TextBox theme:TextBoxExtensions.Prefix="🔍"
-                 theme:TextBoxExtensions.AddDeleteButton="True"
-                 Width="200"
-                 HorizontalAlignment="Left" />
-        <ListBox ItemsSource="{Binding GoodsList}"
+        <WrapPanel>
+            <TextBox x:Name="GoodsSearchTextBox"
+                     TextChanged="GoodsSearchTextBox_OnTextChanged"
+                     theme:TextBoxExtensions.Prefix="🔍"
+                     theme:TextBoxExtensions.AddDeleteButton="True"
+                     Width="200"
+                     HorizontalAlignment="Left" />
+            <ComboBox Width="180"
+                      x:Name="GoodsFilter"
+                      SelectionChanged="GoodsFilter_OnSelectionChanged">
+                <ComboBoxItem>
+                    <TextBlock Foreground="Black">Все столбцы</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock Foreground="Black">Наименование</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock Foreground="Black">Описание</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock Foreground="Black">Производитель</TextBlock>
+                </ComboBoxItem>
+                <ComboBoxItem>
+                    <TextBlock Foreground="Black">Цена</TextBlock>
+                </ComboBoxItem>
+            </ComboBox>
+        </WrapPanel>
+        <ListBox x:Name="GoodsListBox"
+                 ItemsSource="{Binding GoodsList}"
                  AutoScrollToSelectedItem="True"
                  Height="1000">
             <ListBox.ItemTemplate>

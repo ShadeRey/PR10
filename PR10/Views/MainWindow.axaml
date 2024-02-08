@@ -60,7 +60,8 @@
             </StackPanel>
         </dialogHostAvalonia:DialogHost.DialogContent>
         <Grid>
-            <views:AdministratorView IsVisible="{Binding AdministratorViewVisible}" />
+            <views:AdministratorView Name="AdministratorView"
+                                     IsVisible="{ReflectionBinding #MainW.ViewModel.AdministratorViewVisible}" />
             <views:AuthorizedCustomerView Name="AuthorizedCustomerView"
                                           IsVisible="{ReflectionBinding #MainW.ViewModel.AuthorizedCustomerViewVisible}">
             </views:AuthorizedCustomerView>
