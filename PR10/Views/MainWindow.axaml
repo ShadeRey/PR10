@@ -12,7 +12,8 @@
                      x:DataType="vm:MainWindowViewModel"
                      x:Name="MainW"
                      Icon="/Assets/avalonia-logo.ico"
-                     Title="PR10">
+                     Title="PR10"
+                     WindowState="Maximized">
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
