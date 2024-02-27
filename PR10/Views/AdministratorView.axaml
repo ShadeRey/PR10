@@ -8,53 +8,56 @@
                                 xmlns:models="clr-namespace:PR10.Models"
                                 xmlns:views="clr-namespace:PR10.Views"
                                 xmlns:reactiveUi="http://reactiveui.net"
+                                xmlns:controls="clr-namespace:SukiUI.Controls;assembly=SukiUI"
                                 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
                                 x:Class="PR10.Views.AdministratorView"
                                 x:DataType="viewModels:AdministratorViewModel">
     <Design.DataContext>
         <viewModels:AdministratorViewModel />
     </Design.DataContext>
-    <StackPanel>
-        <WrapPanel>
-            <TextBox x:Name="GoodsSearchTextBox"
-                     TextChanged="GoodsSearchTextBox_OnTextChanged"
-                     theme:TextBoxExtensions.Prefix="🔍"
-                     theme:TextBoxExtensions.AddDeleteButton="True"
-                     Width="200"
-                     HorizontalAlignment="Left" />
-            <ComboBox Width="180"
-                      x:Name="GoodsFilter"
-                      SelectionChanged="GoodsFilter_OnSelectionChanged">
-                <ComboBoxItem>
-                    <TextBlock Foreground="Black">Все столбцы</TextBlock>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <TextBlock Foreground="Black">Наименование</TextBlock>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <TextBlock Foreground="Black">Описание</TextBlock>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <TextBlock Foreground="Black">Производитель</TextBlock>
-                </ComboBoxItem>
-                <ComboBoxItem>
-                    <TextBlock Foreground="Black">Цена</TextBlock>
-                </ComboBoxItem>
-            </ComboBox>
-            <Button Content="Добавить"
-                    HorizontalAlignment="Center"
-                    x:Name="GoodsAdd"
-                    Command="{Binding }"/>
-        </WrapPanel>
-        <ListBox x:Name="GoodsListBox"
-                 ItemsSource="{Binding GoodsList}"
-                 AutoScrollToSelectedItem="True"
-                 Height="1000">
-            <ListBox.ItemTemplate>
-                <DataTemplate DataType="models:Goods">
-                    <views:GoodsView DataContext="{Binding .}" />
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </StackPanel>
+    <controls:InteractiveContainer>
+        <StackPanel>
+            <WrapPanel>
+                <TextBox x:Name="GoodsSearchTextBox"
+                         TextChanged="GoodsSearchTextBox_OnTextChanged"
+                         theme:TextBoxExtensions.Prefix="🔍"
+                         theme:TextBoxExtensions.AddDeleteButton="True"
+                         Width="200"
+                         HorizontalAlignment="Left" />
+                <ComboBox Width="180"
+                          x:Name="GoodsFilter"
+                          SelectionChanged="GoodsFilter_OnSelectionChanged">
+                    <ComboBoxItem>
+                        <TextBlock Foreground="Black">Все столбцы</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Foreground="Black">Наименование</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Foreground="Black">Описание</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Foreground="Black">Производитель</TextBlock>
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        <TextBlock Foreground="Black">Цена</TextBlock>
+                    </ComboBoxItem>
+                </ComboBox>
+                <Button Content="Добавить"
+                        HorizontalAlignment="Center"
+                        x:Name="GoodsAdd"
+                        Command="{Binding AddGoodToDB}" />
+            </WrapPanel>
+            <ListBox x:Name="GoodsListBox"
+                     ItemsSource="{Binding GoodsList}"
+                     AutoScrollToSelectedItem="True"
+                     Height="1000">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="models:Goods">
+                        <views:GoodsView DataContext="{Binding .}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </controls:InteractiveContainer>
 </reactiveUi:ReactiveUserControl>

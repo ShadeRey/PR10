@@ -7,6 +7,7 @@ namespace PR10.Models;
 
 public class Goods
 {
+    public int Id { get; set; }
     public string VendorCode { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
     public int Unit { get; set; }
