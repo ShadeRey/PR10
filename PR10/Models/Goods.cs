@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Avalonia.Controls;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -19,16 +20,15 @@ public class Goods
     public double? CurrentDiscount { get; set; } = null;
     public int? QuantityInStock { get; set; } = null;
     public string Description { get; set; } = string.Empty;
-    public string Image { get; set; } = string.Empty;
+    public byte[] Image { get; set; }
     public string Manufacturer_name { get; set; } = string.Empty;
 
     public Uri ImageUrl => new Uri($"avares://PR10/Assets/GoodsPhoto/{Image}");
 
     public Bitmap Bitmap {
-        get
-        {
-            using var stream = AssetLoader.Open(ImageUrl);
-            return new Bitmap(stream);
+        get {
+            using var memoryStream = new MemoryStream(Image);
+            return new Bitmap(memoryStream);
         }
     }
 }

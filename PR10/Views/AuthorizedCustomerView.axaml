@@ -41,6 +41,7 @@
                     <TextBlock Foreground="Black">Цена</TextBlock>
                 </ComboBoxItem>
             </ComboBox>
+            <TextBlock  Text="{Binding FullName}"/>
         </WrapPanel>
         <ListBox x:Name="GoodsListBox"
                  ItemsSource="{Binding GoodsList}"

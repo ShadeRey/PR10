@@ -104,8 +104,7 @@ public class MainWindowViewModel : ViewModelBase
 
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
-                    if (reader.Read())
-                    {
+                    if (reader.Read()) {
                         return reader["Role"].ToString();
                     }
                 }

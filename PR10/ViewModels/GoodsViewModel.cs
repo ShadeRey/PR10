@@ -58,7 +58,7 @@ public class GoodsViewModel : ViewModelBase {
                     CurrentDiscount = reader.GetDouble("Current_discount"),
                     QuantityInStock = reader.GetInt32("Quantity_in_stock"),
                     Description = reader.GetString("Description"),
-                    Image = reader.GetString("Image")
+                    Image = reader.GetFieldValue<byte[]>(reader.GetOrdinal("Image"))
                 };
 
                 goodsData.Add(goodItem);
@@ -73,14 +73,14 @@ public class GoodsViewModel : ViewModelBase {
 
         return goodsData;
     }
-    
+
     private async Task<string?> OpenImageDialog(Visual visual) {
         TopLevel tl = TopLevel.GetTopLevel(visual);
 
         if (tl == null) {
             return null;
         }
-        
+
         var f = await tl.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions() {
             AllowMultiple = false,
         });
@@ -146,7 +146,7 @@ public class GoodsViewModel : ViewModelBase {
                 purveyor.Add(item);
             }
         }
-        
+
         var manufacturer = new List<Manufacturer>();
         {
             using var connection = new MySqlConnection(DataBaseConnectionString.ConnectionString);
@@ -268,7 +268,12 @@ public class GoodsViewModel : ViewModelBase {
                 new Button() {
                     Command = ReactiveCommand.Create(async () => {
                         var path = await OpenImageDialog(vis);
-                        dataContext.Image = path;
+                        if (path == null) {
+                            return;
+                        }
+
+                        var bytes = await File.ReadAllBytesAsync(path);
+                        dataContext.Image = bytes;
                     }),
                     Content = new Avalonia.Controls.Image() {
                         [!Avalonia.Controls.Image.SourceProperty] = new Binding("Image") {
@@ -288,7 +293,7 @@ public class GoodsViewModel : ViewModelBase {
                     Command = ReactiveCommand.Create(InteractiveContainer.CloseDialog)
                 }
             }
-        }, false, true);
+        });
     }
 }
 
