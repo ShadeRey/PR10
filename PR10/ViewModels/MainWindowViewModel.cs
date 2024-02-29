@@ -2,6 +2,7 @@
 using Captcha.Avalonia;
 using MySqlConnector;
 using PR10.DataBase;
+using PR10.Models;
 using ReactiveUI;
 
 namespace PR10.ViewModels;
@@ -88,7 +89,7 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _captchaTextBoxText, value);
     }
 
-    private string ValidateUser(string login, string password)
+    private Users? ValidateUser(string login, string password)
     {
         string connectionString = DataBaseConnectionString.ConnectionString;
 
@@ -96,7 +97,7 @@ public class MainWindowViewModel : ViewModelBase
         {
             connection.Open();
 
-            string query = "SELECT Role FROM Users WHERE Login = @Login AND Password = @Password";
+            string query = "SELECT Role, Full_name FROM Users WHERE Login = @Login AND Password = @Password";
             using (MySqlCommand command = new MySqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@Login", login);
@@ -105,7 +106,10 @@ public class MainWindowViewModel : ViewModelBase
                 using (MySqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read()) {
-                        return reader["Role"].ToString();
+                        return new Users() {
+                            Role = reader["Role"].ToString(),
+                            FullName = reader["Full_name"].ToString()
+                        };
                     }
                 }
             }
@@ -118,13 +122,13 @@ public class MainWindowViewModel : ViewModelBase
     {
         string login = Login;
         string password = Password;
-        string role = ValidateUser(login, password);
+        Users role = ValidateUser(login, password);
         
         if (role != null)
         {
             if (!CaptchaVisible || CaptchaTextBoxText == CaptchaText)
             {
-                switch (role)
+                switch (role.Role)
                 {
                     case "1":
                         AdministratorViewVisible = true;
@@ -136,6 +140,7 @@ public class MainWindowViewModel : ViewModelBase
                         break;
                     case "3":
                         AuthorizedCustomerViewVisible = true;
+                        AuthorizedCustomerViewModel.FullName = ValidateUser(login, password).FullName;
                         LoginDialogOpen = false;
                         break;
                 }

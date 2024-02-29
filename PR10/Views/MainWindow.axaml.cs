@@ -15,7 +15,13 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
     {
         ViewModel = new MainWindowViewModel();
         InitializeComponent();
+        AuthorizedCustomerViewModel authorizedCustomerViewModel = new AuthorizedCustomerViewModel();
+        AuthorizedCustomerView authorizedCustomerView = new AuthorizedCustomerView();
+
+        authorizedCustomerView.DataContext = authorizedCustomerViewModel;
     }
+    
+    
 
     protected override void OnLoaded(RoutedEventArgs e)
     {
